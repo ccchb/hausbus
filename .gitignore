@@ -38,3 +38,6 @@ eagle.epf
 # Shit not listed on GitHub
 *.job
 *.pro
+
+# C code foo
+*.elf
