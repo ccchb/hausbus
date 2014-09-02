@@ -1,7 +1,7 @@
 <meta charset="utf-8">
 
-Layer 1 - Framing und Bitsicherung
-==================================
+Layer 1 - Framing und Erkennen von Übertragungsfehlern
+======================================================
 
 Dieser Layer verarbeitet den Bytestrom aus der Seriellen.
 
@@ -124,4 +124,29 @@ Beispiele
 	Ungültige Nachrichten:
 	00 01 02 03 14 FF F4
 	00 80 FF 00
+
+
+
+
+Layer 2 - Protokollnummernfeld
+==============================
+
+Dieser Layer sorgt dafür, dass man später die höheren Layer auswechseln kann, ohne dabei alle alten
+Geräte austauschen zu müssen.
+
+Die Nachrichten sind wie folgt aufgebaut:
+
+    ├─ 1 Byte ─┼─ n Bytes ─┤
+    ┏━━━━━━━━━━┳━━━━━━━━━━━┓
+    ┃  proto   ┃  payload  ┃
+    ┗━━━━━━━━━━┻━━━━━━━━━━━┛
+
+
+Protokollnummernliste
+---------------------
+
+	00         Reserviert
+	01 - FE    Frei
+	FF         Reserviert
+
 
