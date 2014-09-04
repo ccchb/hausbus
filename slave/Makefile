@@ -1,15 +1,6 @@
-CC = avr-gcc
-MCU = attiny2313
-CFLAGS = -std=c11 -flto -Wall -Wextra -g -Os -mmcu=$(MCU)
 
-default: slave.elf
-	avr-size -C --mcu=$(MCU) slave.elf
+.PHONY: default
 
-slave.elf: proto.o slave.o
-	$(CC) $(CFLAGS) -o $@ $^
+default:
+	make -C targets/
 
-%.o: %.c Makefile
-	$(CC) $(CFLAGS) -c -o $@ $<
-
-clean:
-	rm *.o slave.elf

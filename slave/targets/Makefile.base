@@ -1,0 +1,16 @@
+CC = avr-gcc
+CFLAGS += -std=c11 -flto -Wall -Wextra -g -Os -mmcu=$(MCU) -I../../lib/
+
+target = $(shell basename $$PWD)
+outpath = ../../out
+outfiles = $(foreach devid,${DEVIDS},${outpath}/${target}-${devid}.elf)
+
+SRCS += main.c
+
+.PHONY: default ${DEVIDS}
+
+default: ${DEVIDS}
+
+${DEVIDS}: %:
+	${CC} ${CFLAGS} -DDEVID=$@ -o ${outpath}/${target}-$@.elf ${SRCS}
+
